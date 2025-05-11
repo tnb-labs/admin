@@ -1,6 +1,6 @@
 import type { RouteType } from '~/types/router'
 
-const Layout = () => import('@/layout/index.vue')
+const Layout = () => import('@/layout/IndexView.vue')
 
 export default {
   name: 'ErrorPage',
@@ -8,19 +8,19 @@ export default {
   component: Layout,
   redirect: '/error-page/404',
   meta: {
-    title: 'ErrorPage',
+    title: '错误页',
     order: 99,
-    icon: 'mdi:alert-circle-outline',
+    icon: 'mdi:alert-circle-outline'
   },
   children: [
     {
       name: 'ERROR-404',
       path: '404',
-      component: () => import('./404.vue'),
+      component: () => import('./NotFound.vue'),
       meta: {
         title: '404',
-        icon: 'tabler:error-404',
-      },
-    },
-  ],
+        icon: 'tabler:error-404'
+      }
+    }
+  ]
 } as RouteType

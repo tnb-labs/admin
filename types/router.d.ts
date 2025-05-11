@@ -3,7 +3,6 @@ import { RouteRecordRaw } from 'vue-router'
 interface Meta {
   title?: string
   icon?: string
-  customIcon?: string
   order?: number
   role?: Array<string>
   requireAuth?: boolean
@@ -14,7 +13,7 @@ interface RouteItem {
   path: string
   redirect?: string
   isHidden?: boolean
-  meta?: Meta,
+  meta?: Meta
   children?: RoutesType
 }
 

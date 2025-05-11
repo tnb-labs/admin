@@ -2,7 +2,6 @@ import { defineStore } from 'pinia'
 import { removeToken, toLogin } from '@/utils'
 import { usePermissionStore, useTabStore } from '@/store'
 import { resetRouter } from '@/router'
-import api from '@/api'
 
 interface UserInfo {
   id?: string
@@ -14,7 +13,7 @@ interface UserInfo {
 export const useUserStore = defineStore('user', {
   state() {
     return {
-      userInfo: <UserInfo> {},
+      userInfo: <UserInfo>{}
     }
   },
   getters: {
@@ -29,23 +28,15 @@ export const useUserStore = defineStore('user', {
     },
     role(): Array<string> {
       return this.userInfo.role || []
-    },
+    }
   },
   actions: {
     async getUserInfo() {
-      try {
-        const res: any = await api.getUser()
-        if (res.code === 0) {
-          const { id, name, avatar, role } = res.data
-          this.userInfo = { id, name, avatar, role }
-          return Promise.resolve(res.data)
-        }
-        else {
-          return Promise.reject(res)
-        }
-      }
-      catch (error) {
-        return Promise.reject(error)
+      this.userInfo = {
+        id: '1',
+        name: 'admin',
+        avatar: 'https://weavatar.com/avatar/',
+        role: ['admin']
       }
     },
     async logout() {
@@ -60,6 +51,6 @@ export const useUserStore = defineStore('user', {
     },
     setUserInfo(userInfo = {}) {
       this.userInfo = { ...this.userInfo, ...userInfo }
-    },
-  },
+    }
+  }
 })

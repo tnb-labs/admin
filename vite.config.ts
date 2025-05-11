@@ -18,8 +18,8 @@ export default defineConfig((configEnv: ConfigEnv) => {
     resolve: {
       alias: {
         '~': rootPath,
-        '@': srcPath,
-      },
+        '@': srcPath
+      }
     },
     define: viteDefine,
     plugins: setupVitePlugins(viteEnv, isBuild),
@@ -27,15 +27,15 @@ export default defineConfig((configEnv: ConfigEnv) => {
       host: '0.0.0.0',
       port: VITE_PORT,
       open: false,
-      proxy: createViteProxy(VITE_USE_PROXY, VITE_PROXY_TYPE as ProxyType),
+      proxy: createViteProxy(VITE_USE_PROXY, VITE_PROXY_TYPE as ProxyType)
     },
     build: {
       reportCompressedSize: false,
       sourcemap: false,
       chunkSizeWarningLimit: 1024, // chunk 大小警告的限制（单位kb）
       commonjsOptions: {
-        ignoreTryCatch: false,
-      },
-    },
+        ignoreTryCatch: false
+      }
+    }
   }
 })

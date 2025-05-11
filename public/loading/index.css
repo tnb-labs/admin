@@ -25,12 +25,15 @@
 .left-0 {
   left: 0;
 }
+
 .right-0 {
   right: 0;
 }
+
 .top-0 {
   top: 0;
 }
+
 .bottom-0 {
   bottom: 0;
 }
@@ -70,10 +73,12 @@
   -webkit-animation-delay: 500ms;
   animation-delay: 500ms;
 }
+
 .loading-delay-1000 {
   -webkit-animation-delay: 1000ms;
   animation-delay: 1000ms;
 }
+
 .loading-delay-1500 {
   -webkit-animation-delay: 1500ms;
   animation-delay: 1500ms;

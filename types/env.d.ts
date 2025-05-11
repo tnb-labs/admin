@@ -1,8 +1,7 @@
-type ProxyType = 'dev' | 'test' | 'prod';
+type ProxyType = 'dev' | 'test' | 'prod'
 
 interface ViteEnv {
   VITE_PORT: number
-  VITE_USE_MOCK?: boolean
   VITE_USE_PROXY?: boolean
   VITE_USE_HASH?: boolean
   VITE_APP_TITLE: string
@@ -19,4 +18,3 @@ interface ProxyConfig {
   /** 代理目标地址，后端真实接口地址 */
   target: string
 }
-

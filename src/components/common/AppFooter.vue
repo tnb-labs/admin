@@ -1,22 +1,13 @@
 <template>
-  <footer f-c-c flex-col text-14 color="#6a6a6a">
+  <footer color="#6a6a6a" f-c-c flex-col text-14>
     <p>
-      Copyright © 2022-present
+      © 2024
       <a
-        href="https://github.com/zclzone"
-        target="__blank"
         hover="decoration-underline color-primary"
-      >
-        Ronnie Zhang
-      </a>
-    </p>
-    <p>
-      <a
-        href="http://beian.miit.gov.cn/"
+        href="https://github.com/TheTNB/admin"
         target="__blank"
-        hover="decoration-underline color-primary"
       >
-        赣ICP备2020015008号-1
+        树新蜂
       </a>
     </p>
   </footer>

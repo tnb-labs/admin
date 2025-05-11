@@ -1,23 +1,23 @@
-import type { RouteModule, RouteType, RoutesType } from '~/types/router'
+import type { RouteModule, RoutesType, RouteType } from '~/types/router'
 
-const Layout = () => import('@/layout/index.vue')
+const Layout = () => import('@/layout/IndexView.vue')
 
 export const basicRoutes: RoutesType = [
   {
     name: '404',
     path: '/404',
-    component: () => import('@/views/error-page/404.vue'),
-    isHidden: true,
+    component: () => import('@/views/error-page/NotFound.vue'),
+    isHidden: true
   },
 
   {
     name: 'Login',
     path: '/login',
-    component: () => import('@/views/login/index.vue'),
+    component: () => import('@/views/login/IndexView.vue'),
     isHidden: true,
     meta: {
-      title: '登录页',
-    },
+      title: '登录页'
+    }
   },
 
   {
@@ -27,45 +27,47 @@ export const basicRoutes: RoutesType = [
     meta: {
       title: '外部链接',
       icon: 'mdi:link-variant',
-      order: 3,
+      order: 3
     },
     children: [
       {
-        name: 'LinkGithubSrc',
-        path: 'https://github.com/zclzone/qs-admin',
+        name: 'github',
+        path: 'https://github.com/haozi-team',
         component: () => {},
         meta: {
-          title: '源码 - github',
-          icon: 'mdi:github',
-        },
+          title: 'GitHub',
+          icon: 'mdi:github'
+        }
       },
       {
-        name: 'LinkGiteeSrc',
-        path: 'https://gitee.com/zclzone/qs-admin-ts',
+        name: 'weavatar',
+        path: 'https://weavatar.com',
         component: () => {},
         meta: {
-          title: '源码 - gitee',
-          icon: 'simple-icons:gitee',
-        },
-      },
-    ],
-  },
+          title: 'WeAvatar',
+          icon: 'simple-icons:gravatar'
+        }
+      }
+    ]
+  }
 ]
 
 export const NOT_FOUND_ROUTE: RouteType = {
   name: 'NotFound',
   path: '/:pathMatch(.*)*',
   redirect: '/404',
-  isHidden: true,
+  isHidden: true
 }
 
 export const EMPTY_ROUTE: RouteType = {
   name: 'Empty',
   path: '/:pathMatch(.*)*',
-  component: () => {},
+  component: () => {}
 }
 
-const modules = import.meta.glob('@/views/**/route.ts', { eager: true }) as RouteModule
+const modules = import.meta.glob('@/views/**/route.ts', {
+  eager: true
+}) as RouteModule
 const asyncRoutes: RoutesType = []
 Object.keys(modules).forEach((key) => {
   asyncRoutes.push(modules[key].default)

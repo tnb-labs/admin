@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { kebabCase } from 'lodash-es'
 import { useCssVar } from '@vueuse/core'
 import type { GlobalThemeOverrides } from 'naive-ui'
@@ -13,30 +13,30 @@ watch(
   () => themeStore.naiveThemeOverrides.common,
   (common) => {
     for (const key in common) {
-      useCssVar(`--${kebabCase(key)}`, document.documentElement).value = common[key as ThemeVarsKeys] || ''
+      useCssVar(`--${kebabCase(key)}`, document.documentElement).value =
+        common[key as ThemeVarsKeys] || ''
       if (key === 'primaryColor')
         window.localStorage.setItem('__THEME_COLOR__', common[key as ThemeVarsKeys] || '')
     }
   },
-  { immediate: true },
+  { immediate: true }
 )
 
 watch(
   () => themeStore.darkMode,
   (newValue) => {
-    if (newValue)
-      document.documentElement.classList.add('dark')
-    else
-      document.documentElement.classList.remove('dark')
+    if (newValue) document.documentElement.classList.add('dark')
+    else document.documentElement.classList.remove('dark')
   },
   {
-    immediate: true,
-  },
+    immediate: true
+  }
 )
 
 function handleWindowResize() {
   themeStore.setIsMobile(document.body.offsetWidth <= 640)
 }
+
 onMounted(() => {
   handleWindowResize()
   window.addEventListener('resize', handleWindowResize)
@@ -47,7 +47,11 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <n-config-provider wh-full :theme-overrides="themeStore.naiveThemeOverrides" :theme="themeStore.naiveTheme">
+  <n-config-provider
+    :theme="themeStore.naiveTheme"
+    :theme-overrides="themeStore.naiveThemeOverrides"
+    wh-full
+  >
     <slot />
   </n-config-provider>
 </template>

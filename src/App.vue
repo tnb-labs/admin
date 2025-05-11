@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import AppProvider from '@/components/common/AppProvider.vue'
 </script>
 

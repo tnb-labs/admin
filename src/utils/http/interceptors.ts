@@ -6,8 +6,7 @@ import type { RequestConfig } from '~/types/axios'
 /** 请求拦截 */
 export function reqResolve(config: RequestConfig) {
   // 处理不需要token的请求
-  if (config.noNeedToken)
-    return config
+  if (config.noNeedToken) return config
 
   const token = getToken()
   if (!token)
@@ -17,11 +16,7 @@ export function reqResolve(config: RequestConfig) {
    * * 加上 token
    * ! 认证方案: JWT Bearer
    */
-  const Authorization = config.headers?.Authorization || `Bearer ${token}`
-  if (config.headers)
-    config.headers.Authorization = config.headers.Authorization || `Bearer ${token}`
-  else
-    config.headers = { Authorization }
+  config.headers['Authorization'] = config.headers?.Authorization || `Bearer ${token}`
 
   return config
 }
@@ -41,7 +36,7 @@ export function resResolve(response: AxiosResponse) {
     /** 根据code处理对应的操作，并返回处理后的message */
     const message = resolveResError(code, data?.message ?? statusText)
     const { noNeedTip } = config as RequestConfig
-    !noNeedTip && window.$message?.error(message)
+    !noNeedTip && window.$message.error(message)
     return Promise.reject(new AxiosRejectError({ code, message, data: data || response }))
   }
   return Promise.resolve(data)
@@ -53,7 +48,7 @@ export function resReject(error: AxiosError) {
     const code = error?.code
     /** 根据code处理对应的操作，并返回处理后的message */
     const message = resolveResError(code, error.message)
-    window.$message?.error(message)
+    window.$message.error(message)
     return Promise.reject(new AxiosRejectError({ code, message, data: error }))
   }
   const { data, status, config } = error.response
@@ -64,6 +59,12 @@ export function resReject(error: AxiosError) {
   /** 需要错误提醒 */
   const { noNeedTip } = config as RequestConfig
 
-  !noNeedTip && window.$message?.error(message)
-  return Promise.reject(new AxiosRejectError({ code, message, data: error.response?.data || error.response }))
+  !noNeedTip && window.$message.error(message)
+  return Promise.reject(
+    new AxiosRejectError({
+      code,
+      message,
+      data: error.response?.data || error.response
+    })
+  )
 }

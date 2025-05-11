@@ -9,10 +9,7 @@ export function getSession<T>(key: string) {
   const json = sessionStorage.getItem(key)
   let data: T | null = null
   if (json) {
-    try {
-      data = decrypto(json)
-    }
-    catch {}
+    data = decrypto(json)
   }
   return data
 }

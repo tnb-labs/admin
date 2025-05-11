@@ -5,6 +5,7 @@ import { useUserStore } from '@/store'
 export class AxiosRejectError extends Error {
   code?: number | string
   data?: any
+
   constructor(rejectData: ErrorResolveResponse, options?: ErrorOptions) {
     const { code, message, data } = rejectData
     super(message, options)
@@ -12,6 +13,7 @@ export class AxiosRejectError extends Error {
     this.data = data
   }
 }
+
 export function resolveResError(code: number | string | undefined, message = ''): string {
   switch (code) {
     case 400:

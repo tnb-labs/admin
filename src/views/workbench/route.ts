@@ -1,6 +1,6 @@
 import type { RouteType } from '~/types/router'
 
-const Layout = () => import('@/layout/index.vue')
+const Layout = () => import('@/layout/IndexView.vue')
 
 export default {
   name: 'Dashboard',
@@ -8,17 +8,17 @@ export default {
   component: Layout,
   redirect: '/workbench',
   meta: {
-    order: 0,
+    order: 0
   },
   children: [
     {
       name: 'Workbench',
       path: 'workbench',
-      component: () => import('./index.vue'),
+      component: () => import('./IndexView.vue'),
       meta: {
         title: '工作台',
-        icon: 'mdi:home',
-      },
-    },
-  ],
+        icon: 'mdi:home'
+      }
+    }
+  ]
 } as RouteType

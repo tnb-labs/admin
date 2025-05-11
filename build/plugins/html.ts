@@ -7,9 +7,10 @@ export function setupHtmlPlugin(viteEnv: ViteEnv) {
     minify: true,
     inject: {
       data: {
-        title: VITE_APP_TITLE,
-      },
+        title: VITE_APP_TITLE
+      }
     },
+    viteNext: true
   })
   return htmlPlugin
 }
